@@ -1,0 +1,17 @@
+<div class="table-responsive">  
+    <table class="table">
+    <thead>     
+        <tr>       
+         <th scope="col">Carte mère</th>      
+         <th scope="col">Processeur</th>      
+         <th scope="col">ecran</th>      
+         <th scope="col">Boitier</th>     
+        </tr>    
+    </thead>    
+    <tbody> 
+        {% for u in liste %}
+        <tr><td>{{u.Carte mère}}</td><td>{{u.processeur}}</td><td>{{u.ecran}}</td><td>{{u.boitier}}</td></tr>
+        {% endfor %}        
+    </tbody>   
+    </table> 
+</div>

@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} contact {% endblock %}
+{% block contenu %} 
+
+{% if form.valide is defined %}     
+    {% if form.valide == true %}       
+        <h1><a href="index.php?page=contact"></h1>
+        <h1>envoie réussie</h1>      
+        <h1>email: {{form.email}}</h1> 
+        <h1>nom: {{form.nom}}</h1> 
+        <h1>message: {{form.message}}</h1> 
+    {% else %} 
+        <h1>Echec de l'envoi</h1>        
+        <h1>Erreur : {{form.message}}</h1>       
+        <h1><a href="index.php?page=contact">Retourner sur la page contact</a></h1>    
+    {% endif %}     
+{% else %}   
+    <form action="index.php?page=contact" method="post" enctype="application/x-www-form-urlencoded">      
+    <h1>envoyer des contact sur SHOP-SHOP</h1>
+    <label for="inputNom" class="sr-only">Nom: </label>      
+    <input type="texte" id="inputNom" name="nomC" class="form-control" placeholder="Nom" required autofocus>
+    <label for="inputPrénom" class="sr-only">Prénom: </label>      
+    <input type="texte" id="inputPrénom" name="prenomC" class="form-control" placeholder="Prénom" required autofocus>         
+    <label for="inputEmail" class="sr-only">Email:</label>      
+    <input type="email" id="inputEmail" name="inputEmailC" class="form-control" placeholder="Email" required autofocus>      
+    <label for="inputMessage">Message:</label>  
+    <textarea id="inputMessage" name="message" rows="4" cols="50"></textarea>   
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btEnvoyer">Envoyer</button> 
+    </form>
+{% endif %}  
+{% endblock %} 
