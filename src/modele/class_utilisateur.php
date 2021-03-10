@@ -12,8 +12,8 @@ class Utilisateur{
         $this->insert = $this->db->prepare("insert into utilisateur(email, mdp, nom, prenom, idRole)values (:email, :mdp, :nom, :prenom, :role)");  
         $this->connect  =  $this->db->prepare("select  email,  idRole,  mdp  from  utilisateur  where email=:email");       
         $this->select = $db->prepare("select u.idUtilisateur, email, idRole, nom, prenom, r.libelle as libellerole from utilisateur u, role r where u.idRole = r.id order by nom");
-        $this->selectById  =  $db->prepare("select  id,  email,  nom,  prenom,  idRole  from  utilisateur  whereid=:id");
-        $this->update  =  $db->prepare("update  utilisateur  set  nom=:nom,  prenom=:prenom,  idRole=:rolewhere id=:id");
+        $this->selectById  =  $db->prepare("select  idUtilisateur,  email,  nom,  prenom,  idRole  from  utilisateur  where idUtilisateur=:id");
+        $this->update  =  $db->prepare("update  utilisateur  set  nom=:nom,  prenom=:prenom,  idRole=:role where idUtilisateur=:id");
     }
 
     public function insert($email, $mdp, $role, $nom, $prenom){ // Étape 3         

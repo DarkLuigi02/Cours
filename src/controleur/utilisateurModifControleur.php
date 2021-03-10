@@ -27,7 +27,9 @@ function utilisateurModifControleur($twig, $db){
                 $form['valide'] = true;           
                 $form['message'] = 'Modification réussie';         
             }
-        }else{$form['message'] = 'Utilisateur non précisé';
+        }
+        else{
+            $form['message'] = 'Utilisateur non précisé';
         }
     }
 echo $twig->render('utilisateur-modif.html.twig', array('form'=>$form));}
