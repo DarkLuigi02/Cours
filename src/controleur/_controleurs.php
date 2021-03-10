@@ -4,6 +4,7 @@ require_once 'utilisateurControleur.php';
 require_once 'ContactControleur.php';
 require_once 'typeControleur.php';
 require_once 'utilisateurModifControleur.php';
+require_once 'coachingControlleur.php';
 require_once '../lib/vendor/autoload.php';
 require_once '../src/controleur/_controleurs.php';
 

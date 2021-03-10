@@ -1,3 +1,15 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Liste des utilisateurs {% endblock %}
+{% block contenu %} <h1>Liste des utilisateurs</h1>
+
+{% if form.etat is defined %}     
+    {% if form.etat == true %}       
+        <h1 class="h3 mb-3 font-weight-normal">Suppression réussie</h1>       
+    {% else %}         
+    <h1 class="alert alert-danger" role="alert">Problème d'insertion</h1>     
+    {% endif %}         
+{% endif %}   
+
 <div class="table-responsive">  
     <table class="table">
     <thead>     
@@ -6,19 +18,22 @@
          <th scope="col">Nom</th>      
          <th scope="col">Prénom</th>      
          <th scope="col">Rôle</th>
-         <th scope="col"></th>     
+         <th scope="col"></th>  
+         <th scope="col"></th>   
         </tr>    
     </thead>    
     <tbody> 
         {% for u in liste %}
-            <tr>
+        <tr>
             <td>{{u.email}}</td>
             <td>{{u.nom}}</td>
             <td>{{u.prenom}}</td>
             <td>{{u.libellerole}}</td>
             <td><a href="index.php?page=utilisateurModif&id={{u.idUtilisateur}}">Modifier</a></td>
-            </tr>
+            <td><a href="index.php?page=utilisateur&id={{u.idUtilisateur}}">Supprimer</a></td>
+        </tr>
         {% endfor %}        
     </tbody>   
     </table> 
 </div>
+{% endblock %}

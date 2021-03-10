@@ -18,8 +18,13 @@ function utilisateurModifControleur($twig, $db){
             $nom = $_POST['nom'];       
             $prenom = $_POST['prenom'];       
             $role = $_POST['role'];       
-            $id = $_POST['id'];       
-            $exec=$utilisateur->update($id, $role, $nom, $prenom);       
+            $id = $_POST['id'];
+            $mdp =$_POST['mdp'];       
+            $exec=$utilisateur->update($id, $role, $nom, $prenom);  
+            if (!var_dump($mdp) == ""){
+                //ne pas modifier le mot de passe
+            }
+            
             if(!$exec){         
                 $form['valide'] = false;           
                 $form['message'] = 'Echec de la modification';        

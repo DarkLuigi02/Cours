@@ -7,7 +7,7 @@ function ContactControleur($twig, $db){
         $prenom1 = $_POST['prenomC'];        
         $message = $_POST['message'];
         $form['valide'] = true; 
-        $contact = new Contact($db); //verifie dans la classe Conctact
+        $contact = new Contact($db); //verifie dans la classe Contact
         $exec = $contact->insert($inputEmail1, $message, $nom1, $prenom1);        
             if (!$exec){          
                 $form['valide'] = false;            

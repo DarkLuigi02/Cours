@@ -6,6 +6,8 @@ class Utilisateur{
     private $select; 
     private $selectById;  
     private $update;
+    private $updateMdp;
+    private $delete;
     
     public function __construct($db){        // Étape 2 
         $this->db = $db; 
@@ -14,6 +16,8 @@ class Utilisateur{
         $this->select = $db->prepare("select u.idUtilisateur, email, idRole, nom, prenom, r.libelle as libellerole from utilisateur u, role r where u.idRole = r.id order by nom");
         $this->selectById  =  $db->prepare("select  idUtilisateur,  email,  nom,  prenom,  idRole  from  utilisateur  where idUtilisateur=:id");
         $this->update  =  $db->prepare("update  utilisateur  set  nom=:nom,  prenom=:prenom,  idRole=:role where idUtilisateur=:id");
+        $this->updateMdp  =  $db->prepare("update  utilisateur  set  mdp=:mdp");
+        $this->delete = $db->prepare("delete from utilisateur where idUtilisateur=:id");
     }
 
     public function insert($email, $mdp, $role, $nom, $prenom){ // Étape 3         
@@ -53,5 +57,22 @@ class Utilisateur{
             $r=false;       
         }        
     return $r;
+    }
+    public function updateMdp(){        
+        $r = true;        
+        $this->update->execute(array(':mdp'=>$mdp));        
+        if ($this->update->errorCode()!=0){             
+            print_r($this->update->errorInfo());               
+            $r=false;       
+        }        
+    return $r;
+    }
+    public function delete($id){   
+        $r = true;
+        $this->delete->execute(array(':id'=>$id));        
+        if ($this->delete->errorCode()!=0){             
+            print_r($this->delete->errorInfo());               
+            $r=false;        
+        }return $r;    
     }
 }?>
