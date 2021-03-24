@@ -2,6 +2,7 @@
 require_once 'accueilControleur.php';
 require_once 'utilisateurControleur.php';
 require_once 'ContactControleur.php';
+require_once 'produitControleur.php';
 require_once 'typeControleur.php';
 require_once 'utilisateurModifControleur.php';
 require_once 'coachingControlleur.php';

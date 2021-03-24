@@ -5,7 +5,7 @@
 {% if form.valide is defined %}     
     {% if form.valide == true %}       
     <h1>Inscription réussie</h1>      
-    <h1>Voici votre identifiant : {{form.email}}</h1>            
+    <h1>Voici votre produit : {{form.produit}}</h1>            
     {% else %} 
     <h1>Echec de l'inscription</h1>        
     <h1>Erreur : {{form.message}}</h1>       
@@ -17,14 +17,17 @@
     <label for="inputProduit" class="sr-only">Nom du produit: </label>      
     <input type="texte" id="libelle" name="produit" class="form-control" placeholder="designation" required autofocus>
     <label for="inputdescription" class="sr-only">description: </label>    
-    <textarea id="inputdescrip" name="description" rows="4" cols="50"></textarea>        
+    <textarea id="inputdescrip" name="description" placeholder="description" rows="4" cols="50"></textarea>        
     <label for="inputPrix" class="sr-only">Prix:</label>      
     <input type="nombre" id="prix" name="inputPrix" class="form-control" placeholder="prix" required autofocus>  
     <select class="form-control" name="type">     
-    <option value="1">Carte mère</option>     
-    <option value="2">Processeur</option> 
-    <option value="3">Boitier</option>      
-    <option value="4">Autre</option> 
+    <option value="1">Jeux Vidéo</option>     
+    <option value="2">Tour Ordinateur</option> 
+    <option value="3">Console</option>      
+    <option value="4">Processeurs</option> 
+    <option value="5">Ecran</option>
+    <option value="6">Carte mère</option>
+    <option value="7">Autre</option>
     </select>     
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="newproduit">Creation</button> 
     </form>

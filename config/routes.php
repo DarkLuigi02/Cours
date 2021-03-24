@@ -11,8 +11,11 @@ function getPage($db){
     $lesPages['connexion'] = "connexionControleur";
     $lesPages['utilisateur'] = "utilisateurControleur";
     $lesPages['utilisateurModif'] = "utilisateurModifControleur";
-    $lesPages['creaproduit'] = "produitControleur";
+    $lesPages['produit'] = "produitControleur";
+    $lesPages['produitmodif'] = "produitModifControleur";
+    $lesPages['typemodif'] = "typeModifControleur";
     $lesPages['coaching'] = "coachingControleur";
+
     
     if ($db!=null){
         if (isset($_GET['page'])){

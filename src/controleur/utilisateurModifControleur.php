@@ -21,8 +21,10 @@ function utilisateurModifControleur($twig, $db){
             $id = $_POST['id'];
             $mdp =$_POST['mdp'];       
             $exec=$utilisateur->update($id, $role, $nom, $prenom);  
-            if (!var_dump($mdp) == ""){
+            if (is_empty  == true){
                 //ne pas modifier le mot de passe
+            }else{
+                $exec=$utilisateur->update($mdp);
             }
             
             if(!$exec){         
