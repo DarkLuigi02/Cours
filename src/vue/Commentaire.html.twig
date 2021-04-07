@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Commentaire {% endblock %}
+{% block contenu %} 
+<h1>Liste des commentaire</h1>
+
+<form  class="form-signin" action="index.php?page=commentaire" method="post" enctype="application/x-www-form-urlencoded"> 
+
+<div class="table-responsive">  
+    <table class="table">
+    <thead>     
+        <tr>       
+         <th scope="col">Message</th>      
+         <th scope="col">NomUtilisateur</th>      
+         <th scope="col">PrénomUtilisateur</th>      
+         <th scope="col">DesignationProduit</th>
+         <th scope="col"></th>  
+         <th scope="col"></th>   
+        </tr>    
+    </thead>    
+    <tbody> 
+        {% for c in liste %}
+        <tr>
+            <td>{{c.message}}</td>
+            <td>{{c.nomutilisateur}}</td>
+            <td>{{c.prenomutilisateur}}</td>
+            <td>{{c.designationproduit}}</td>
+            <td><a href="index.php?page=commentaireModif&id={{c.id}}">Modifier</a></td>
+            <td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{c.id}}" /></td>
+        </tr>
+        {% endfor %}                
+    </tbody> </table>  
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button></form> 
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ parent() }} Modifier un utilisateur {% endblock %}
+{% block contenu %} 
+{% if form.commentaire is defined %}     
+    {% if form.commentaire != null %}      
+        <form class="form-signin" action="index.php?page=commentaireModif" method="post" enctype="application/x-www-form-urlencoded">      
+        <h1 class="h3 mb-3 font-weight-normal">Modifier un commentaire</h1>         
+        <label for="message" class="sr-only">Message:</label>      
+        <input type="text" id="message" name="message" class="form-control" placeholder="Message" value="{{form.commentaire.message}}">  
+        <input type="hidden" name="id" value="{{ form.commentaire.id}}"/>     
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button>      
+        </form> 
+    {% else %}        
+    <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>        
+    <a href="index.php?page=commentaire">Retourner sur la liste des commentaire</a>    
+    {% endif %}
+{% else %}      
+    {% if form.valide == true %}         
+    <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>         
+    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=commentaire">Retourner sur la liste des commentaire</a></h1>     
+    {% else %}          
+    <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>       
+    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=commentaire">Retourner sur la liste des commentaire</a></h1>    
+    {% endif %}
+{% endif %}     
+{% endblock %} 

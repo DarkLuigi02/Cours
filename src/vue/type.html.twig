@@ -1,16 +1,21 @@
 <div class="table-responsive">  
     <table class="table">
     <thead>     
-        <tr>       
-         <th scope="col">Carte mère</th>      
-         <th scope="col">Processeur</th>      
-         <th scope="col">ecran</th>      
-         <th scope="col">Boitier</th>     
+        <tr>        
+         <th scope="col">Jeux Vidéo</th>      
+         <th scope="col">Tour Ordinateur</th> 
+         <th scope="col">Console</th>      
+         <th scope="col">Processeurs</th>
+         <th scope="col">Ecran</th>
+         <th scope="col">Carte mère</th>
+         <th scope="col">Autre</th> 
         </tr>    
     </thead>    
     <tbody> 
-        {% for u in liste %}
-        <tr><td>{{u.Carte mère}}</td><td>{{u.processeur}}</td><td>{{u.ecran}}</td><td>{{u.boitier}}</td></tr>
+        {% for p in liste %}
+        <tr><td>{{p.Jeux Vidéo}}</td><td>{{p.Tour Ordinateur}}</td><td>{{p.Console}}</td>
+            <td>{{p.Processeurs}}</td><td>{{p.Ecran}}</td><td>{{p.Processeurs}}</td><td>{{p.Carte mère}}</td><td>{{p.Autre}}</td>
+        </tr>
         {% endfor %}        
     </tbody>   
     </table> 

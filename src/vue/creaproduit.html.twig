@@ -5,21 +5,23 @@
 {% if form.valide is defined %}     
     {% if form.valide == true %}       
     <h1>Inscription réussie</h1>      
-    <h1>Voici votre produit : {{form.produit}}</h1>            
+    <h1>Voici le nom du produit : {{form.designation}}</h1>            
     {% else %} 
     <h1>Echec de l'inscription</h1>        
     <h1>Erreur : {{form.message}}</h1>       
     <h1><a href="index.php?page=creaproduit">Retourner sur la page d'inscription</a></h1>    
     {% endif %}     
     {% else %}   
-    <form action="index.php?page=creaproduit" method="post" enctype="application/x-www-form-urlencoded">      
+    <form class="form-signin" action="index.php?page=creaproduit" method="post" enctype="multipart/form-data">      
     <h1>Creation d'un nouveau produit</h1>
     <label for="inputProduit" class="sr-only">Nom du produit: </label>      
-    <input type="texte" id="libelle" name="produit" class="form-control" placeholder="designation" required autofocus>
-    <label for="inputdescription" class="sr-only">description: </label>    
-    <textarea id="inputdescrip" name="description" placeholder="description" rows="4" cols="50"></textarea>        
+    <input type="texte" id="designation" name="inputProduit" class="form-control" placeholder="designation" required autofocus>
+    <label for="inputDescription" class="sr-only">Description: </label>    
+    <textarea id="description" name="inputDescription" placeholder="description" rows="4" cols="50"></textarea>        
     <label for="inputPrix" class="sr-only">Prix:</label>      
-    <input type="nombre" id="prix" name="inputPrix" class="form-control" placeholder="prix" required autofocus>  
+    <input type="nombre" id="prix" name="inputPrix" class="form-control" placeholder="prix" required autofocus>
+    <label for="photo" class="form-control">Photo :</label>
+    <input type="file" name="photo" id="photo" class="form-control"/>
     <select class="form-control" name="type">     
     <option value="1">Jeux Vidéo</option>     
     <option value="2">Tour Ordinateur</option> 

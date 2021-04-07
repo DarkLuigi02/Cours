@@ -2,22 +2,26 @@
 {% block title %}{{ parent() }} Modifier un utilisateur {% endblock %}
 {% block contenu %} 
 <h1>Modifier un Produit</h1>
-{% if form.utilisateur is defined %}     
-    {% if form.utilisateur != null %}      
+{% if form.produit is defined %}     
+    {% if form.produit != null %}      
         <form class="form-signin" action="index.php?page=utilisateurModif" method="post" enctype="application/x-www-form-urlencoded">      
         <h1 class="h3 mb-3 font-weight-normal">Modifier un Produit</h1>         
         <label for="designation" class="sr-only">Designation:</label>      
-        <input type="text" id="designation" name="designation" class="form-control" placeholder="designation" value="{{form.type.designation}}">    
+        <input type="text" id="designation" name="designation" class="form-control" placeholder="designation" value="{{form.produit.designation}}">    
         <label for="description" class="sr-only">Description:</label>      
-        <input type="textarea" id="description" name="description" class="form-control" placeholder="description" value="{{form.type.description}}">      
+        <input type="textarea" id="description" name="description" class="form-control" placeholder="description" value="{{form.produit.description}}">      
         <label for="prix" class="sr-only">Prix:</label>      
-        <input type="text" id="prix" name="prix" class="form-control" placeholder="prix" value="{{form.type.prix}}">      
+        <input type="text" id="prix" name="prix" class="form-control" placeholder="prix" value="{{form.produit.prix}}">  
+        {% if form.produit.photo is not empty %}
+            <img src="images/{{form.produit.photo}}" alt= "image du produit " />
+        {% endif %}
+    
         <select class="form-control" name="type">
             {% for t in form.type %}        
                 {% if t.id==type.produit.idType %}          
-                    <option value="{{ r.id }}" selected>{{ t.libelle }}</option>         
+                    <option value="{{ t.id }}" selected>{{ t.libelle }}</option>         
                 {% else %}
-                    <option value="{{ r.id }}">{{ t.libelle }}</option>            
+                    <option value="{{ t.id }}">{{ t.libelle }}</option>            
                 {% endif %}        
             {% endfor %}         
         </select> 

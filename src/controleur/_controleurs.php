@@ -1,5 +1,6 @@
 <?php  
 require_once 'accueilControleur.php';
+require_once 'commentaireControleur.php';
 require_once 'utilisateurControleur.php';
 require_once 'ContactControleur.php';
 require_once 'produitControleur.php';

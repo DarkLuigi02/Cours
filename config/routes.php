@@ -11,10 +11,13 @@ function getPage($db){
     $lesPages['connexion'] = "connexionControleur";
     $lesPages['utilisateur'] = "utilisateurControleur";
     $lesPages['utilisateurModif'] = "utilisateurModifControleur";
+    $lesPages['creaproduit'] = "produitCreaControleur";
     $lesPages['produit'] = "produitControleur";
-    $lesPages['produitmodif'] = "produitModifControleur";
+    $lesPages['produitModif'] = "produitModifControleur";
     $lesPages['typemodif'] = "typeModifControleur";
     $lesPages['coaching'] = "coachingControleur";
+    $lesPages['commentaire'] = "commentaireControleur";
+    $lesPages['commentaireModif'] = "commentaireModifControleur";
 
     
     if ($db!=null){
