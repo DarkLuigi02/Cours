@@ -9,24 +9,21 @@
         <link rel="stylesheet" 
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
         crossorigin="anonymous">
-        <title>{% block title %}Maison de l'imformatique - {% endblock %}</title> 
+        <title>{% block title %}La Maison du Jeuformatique - {% endblock %}</title> 
     </head>  
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
             <a class="navbar-brand" href="#">
                 <img src="https://static.vecteezy.com/ti/vecteur-libre/p1/2002589-tour-de-bureau-d-ordinateur-avec-console-de-jeux-video-gratuit-vectoriel.jpg" alt="" width="70" height="70">
             </a>    
-            <a class="navbar-brand" href="#">Maison de l'imformatique</a>     
+            <a class="navbar-brand" href="index.php?page=accueil">Maison du Jeuformatique</a>     
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">        
             <span class="navbar-toggler-icon"></span>      
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">        
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">          
                     <li class="nav-item active">            
-                        <a class="nav-link" href="index.php?page=accueil">Accueil <span class="sr-only">(current)</span></a>          
-                    </li>
-                    <li class="nav-item active">            
-                        <a class="nav-link" href="index.php?page=produit">Boutique <span class="sr-only">(current)</span></a>          
+                        <a class="nav-link" href="index.php?page=boutique">Boutique <span class="sr-only">(current)</span></a>          
                     </li>
                     <li class="nav-item active">            
                         <a class="nav-link" href="index.php?page=contact">Recuperation <span class="sr-only">(current)</span></a>          
@@ -42,13 +39,16 @@
                     </li>
                     <li class="nav-item active">            
                         <a class="nav-link" href="index.php?page=apropos">A propos <span class="sr-only">(current)</span></a>          
-                    </li>          
+                    </li>
+                              
+                    <form class="form-inline my-2 my-lg-0" action="index.php?page=recherche" method="post" enctype="application/x-www-form-urlencoded">  
+                    <li> <input class="form-control mr-sm-2" type="search" id="recherche" name="recherche" placeholder="Tapez votre recherche"> 
+                    </li>
                     <li>
-                        <input class="form-control mr-sm-2" type="search" placeholder="Tapez votre recherche">
-                    </li>          
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Rechercher</button> 
-                    </ul>        
-                <form class="form-inline my-2 my-lg-0"> 
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name='BtRecherche'>Rechercher </button>
+                    </li>
+                    </form>   
+                    </ul>       
                     <li>
                         <a class="btn btn-outline-primary my-2 my-sm-0" href="index.php?page=inscrire">Inscription <span class="sr-only">(current)</span></a>  
                     </li> 

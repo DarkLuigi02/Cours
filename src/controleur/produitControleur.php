@@ -1,6 +1,25 @@
 <?php
 function produitCreaControleur($twig,$db){  
-    $form = array();   
+    $form = array();   $form = array();
+    if (isset($_POST['BtRecherche'])){   
+        $produit = new Produit;
+        $design = $_POST['recherche'];
+        $liste=$produit->recherche($design);
+    }             
+    $limite=5;
+    if(!isset($_GET['nopage'])){
+        $inf=0;
+        $nopage=0;
+    }else{
+        $nopage=$_GET['nopage'];
+        $inf=$nopage * $limite;
+    }
+    $r = $produit->selectCount();
+    $nb = $r['nb'];
+    $liste = $produit->selectLimit($inf,$limite);
+    $form['nbpages'] = ceil($nb/$limite);
+    $form['nopage'] = $nopage;
+    echo $twig->render('recherche.html.twig', array('form'=>$form,'liste'=>$liste));
     if (isset($_POST['newproduit'])){    
         $photo =null;      
         $produit = new Produit($db);      
@@ -23,6 +42,40 @@ function produitCreaControleur($twig,$db){
     echo $twig->render('creaproduit.html.twig', array('form'=>$form));
 }
 
+function boutiqueControleur($twig, $db){
+    $form = array();  
+    $produit = new Produit($db);
+    $liste = $produit->select();
+
+        if(isset($_POST['btPrendre'])){      
+            $cocher = $_POST['cocher'];      
+            $form['valide'] = true;      
+            $etat = true;      
+            foreach ( $cocher as $id){        
+                $exec=$produit->selectById($id);         
+                if (!$exec){           
+                    $etat = false;          
+                }      
+            }      
+            header('Location: index.php?page=produit&etat='.$etat);      
+            exit;    
+        }
+        if(isset($_GET['id'])){      
+            $exec=$produit->selectById($_GET['id']);      
+            if (!$exec){        
+                $etat = false;      
+            }else{        
+                $etat = true;      
+            }
+            header('Location: index.php?page=produit&etat='.$etat);      
+            exit;    
+        }    
+        if(isset($_GET['etat'])){       
+            $form['etat'] = $_GET['etat'];     
+        }
+        $liste = $produit->select();
+    echo $twig->render('boutique.html.twig', array('form'=>$form,'liste'=>$liste));
+}
 function produitControleur($twig, $db){    
     $form = array();  
     $produit = new Produit($db);   
@@ -40,7 +93,6 @@ function produitControleur($twig, $db){
         header('Location: index.php?page=produit&etat='.$etat);      
         exit;    
     }
-    
     if(isset($_GET['id'])){      
         $exec=$produit->delete($_GET['id']);      
         if (!$exec){        
@@ -77,9 +129,10 @@ function produitModifControleur($twig, $db){
             $design = $_POST['designation'];  
             $descrip = $_POST['description'];     
             $prix = $_POST['prix'];       
-            $type = $_POST['type'];       
+            $type = $_POST['type'];
+            $photo = $_POST['photo'];       
             $id = $_POST['id'];       
-            $exec=$produit->update($id, $design, $descrip, $prix, $type);  
+            $exec=$produit->update($id, $design, $descrip, $prix, $type,$photo);  
             if(!$exec){         
                 $form['valide'] = false;           
                 $form['message'] = 'Echec de la modification';        
@@ -92,7 +145,21 @@ function produitModifControleur($twig, $db){
             $form['message'] = 'Produit non précisé';
         }
     }
-echo $twig->render('produit-modif.html.twig', array('form'=>$form));}
+$limite=3;
+if(!isset($_GET['nopage'])){
+    $inf=0;
+    $nopage=0;
+}else{
+    $nopage=$_GET['nopage'];
+    $inf=$nopage * $limite;
+}
+$r = $produit->selectCount();
+$nb = $r['nb'];
+$liste = $produit->selectLimit($inf,$limite);
+$form['nbpages'] = ceil($nb/$limite);
+$form['nopage'] = $nopage;
+echo $twig->render('produit-modif.html.twig', array('form'=>$form,'liste'=>$liste));
+}
 
 
 ?>

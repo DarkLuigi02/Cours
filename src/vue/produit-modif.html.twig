@@ -4,7 +4,7 @@
 <h1>Modifier un Produit</h1>
 {% if form.produit is defined %}     
     {% if form.produit != null %}      
-        <form class="form-signin" action="index.php?page=utilisateurModif" method="post" enctype="application/x-www-form-urlencoded">      
+        <form class="form-signin" action="index.php?page=produitModif" method="post" enctype="application/x-www-form-urlencoded">      
         <h1 class="h3 mb-3 font-weight-normal">Modifier un Produit</h1>         
         <label for="designation" class="sr-only">Designation:</label>      
         <input type="text" id="designation" name="designation" class="form-control" placeholder="designation" value="{{form.produit.designation}}">    
@@ -12,9 +12,13 @@
         <input type="textarea" id="description" name="description" class="form-control" placeholder="description" value="{{form.produit.description}}">      
         <label for="prix" class="sr-only">Prix:</label>      
         <input type="text" id="prix" name="prix" class="form-control" placeholder="prix" value="{{form.produit.prix}}">  
+        <label for="photo" class="sr-only">Image:</label>   
         {% if form.produit.photo is not empty %}
             <img src="images/{{form.produit.photo}}" alt= "image du produit " />
-        {% endif %}
+        {% else %}
+            <img src="images/carton.jpg" class style="width: 10%" alt= "image du produit" />
+        {% endif %}   
+        <input type="file" id="photo" name="photo" class="form-control" placeholder="Image" value="{{form.produit.photo}}">  
     
         <select class="form-control" name="type">
             {% for t in form.type %}        

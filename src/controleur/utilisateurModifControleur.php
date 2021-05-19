@@ -19,12 +19,13 @@ function utilisateurModifControleur($twig, $db){
             $prenom = $_POST['prenom'];       
             $role = $_POST['role'];       
             $id = $_POST['id'];
-            $mdp =$_POST['mdp'];       
+            $mdp =$_POST['inputPassword'];       
             $exec=$utilisateur->update($id, $role, $nom, $prenom);  
-            if (is_empty  == true){
-                //ne pas modifier le mot de passe
+            if ($mdp  == null){
+                $form['valide'] = false;
+                $form['message'] = "ce n'est pas le meme mot de passe";
             }else{
-                $exec=$utilisateur->update($mdp);
+                $exec=$utilisateur->updateMdp($id, password_hash($mdp, PASSWORD_DEFAULT));
             }
             
             if(!$exec){         

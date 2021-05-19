@@ -3,6 +3,7 @@ class Utilisateur{
     private $db;  // Étape 1
     private $insert; 
     private $connect; 
+    private $valide;
     private $select; 
     private $selectById;  
     private $update;
@@ -11,12 +12,13 @@ class Utilisateur{
     
     public function __construct($db){        // Étape 2 
         $this->db = $db; 
-        $this->insert = $this->db->prepare("insert into utilisateur(email, mdp, nom, prenom, idRole)values (:email, :mdp, :nom, :prenom, :role)");  
-        $this->connect  =  $this->db->prepare("select  email,  idRole,  mdp  from  utilisateur  where email=:email");       
+        $this->insert = $this->db->prepare("insert into utilisateur(email, mdp, nom, prenom, idRole, idgenere)values (:email, :mdp, :nom, :prenom, :role, :genere)");  
+        $this->connect  =  $this->db->prepare("select  email,  idRole,  mdp  from  utilisateur  where email=:email");
+        $this->valide  =  $this->db->prepare("select  email,  idRole,  mdp  from  utilisateur  where email=:email");              
         $this->select = $db->prepare("select u.idUtilisateur, email, idRole, nom, prenom, r.libelle as libellerole from utilisateur u, role r where u.idRole = r.id order by nom");
         $this->selectById  =  $db->prepare("select  idUtilisateur,  email, nom, prenom,  idRole  from  utilisateur  where idUtilisateur=:id");
         $this->update  =  $db->prepare("update  utilisateur  set  nom=:nom,  prenom=:prenom,  idRole=:role where idUtilisateur=:id");
-        $this->updateMdp  =  $db->prepare("update  utilisateur  set  mdp=:mdp");
+        $this->updateMdp  =  $db->prepare("update  utilisateur  set  mdp=:mdp where idUtilisateur=:id");
         $this->delete = $db->prepare("delete from utilisateur where idUtilisateur=:id");
     }
 
@@ -34,6 +36,12 @@ class Utilisateur{
         if ($this->connect->errorCode()!=0){             
             print_r($this->connect->errorInfo());          
         }return $this->connect->fetch();    
+    }
+    public function valide($email){          
+        $unUtilisateur = $this->valide->execute(array(':email'=>$email));        
+        if ($this->valide->errorCode()!=0){             
+            print_r($this->valide->errorInfo());          
+        }return $this->valide->boolean;    
     }
     public function select(){        
         $this->select->execute();        
@@ -58,9 +66,9 @@ class Utilisateur{
         }        
     return $r;
     }
-    public function updateMdp(){        
+    public function updateMdp($id, $mdp){        
         $r = true;        
-        $this->update->execute(array(':mdp'=>$mdp));        
+        $this->updateMdp->execute(array(':id'=>$id,':mdp'=>$mdp));        
         if ($this->update->errorCode()!=0){             
             print_r($this->update->errorInfo());               
             $r=false;       

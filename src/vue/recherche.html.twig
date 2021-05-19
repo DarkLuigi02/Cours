@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Résultat de votre recherche {% endblock %}
+{% block contenu %}
+{% if form.valide is defined %}  
+    {% if form.valide == true %}       
+        <h1>Résultat de votre recherche</h1>
+        <h1>{{form.designation}}</h1>  
+        {% if liste | length >0 %}
+        <form  class="form-signin" action="index.php?page=recherche" method="post" enctype="application/x-www-form-urlencoded"> 
+            <div class="table-responsive">  
+                <table class="table">
+                <thead>     
+                    <tr>       
+                    <th scope="col">Designation</th>      
+                    <th scope="col">Description</th>      
+                    <th scope="col">Prix</th>      
+                    <th scope="col">Photo</th>
+                    <th scope="col"></th>  
+                    <th scope="col"></th>   
+                    </tr>    
+                </thead>    
+                <tbody> 
+                    {% for p in liste %}
+                    <tr>
+                        <td>{{p.designation}}</td>
+                        <td>{{p.description}}</td>
+                        <td>{{p.prix}}</td>
+                        <td><img class style="width: 10%" src = "images/{{p.photo}}" ></src></td>
+                        <td><a href="index.php?page=produitModif&id={{p.id}}">Modifier</a></td>
+                        <td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{u.id}}" /></td>
+                    </tr>
+                    {% endfor %}        
+                </tbody> 
+                </table>
+            </div>  
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="btPrendre">Prendre</button>
+        </form>
+
+        {% set nb = form.nbpages %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center m-4 p-4">
+                <li class="page-item {% if form.nopage == 0 %}disabled{% endif %}">
+                    <a class="page-link" href="index.php?page=produit&nopage={{ 0 }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% for i in 1..nb %}
+
+                <li class="page-item {% if i ==form.nopage +1 %} active{% endif %}"><a class="page-link" href="index.php?page=produit&nopage={{ i-1 }}">{{ i }}
+                    <span class="sronly">(current)</span></a>
+                </li>
+
+                {% endfor %}
+                <li class="page-item {% if form.nopage == form.nbpages-1 %}disabled{% endif %}">
+                    <a class="page-link" href="index.php?page=produit&nopage={{ nb-1 }}" aria-label="Next" >
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% else %}
+        <h1 class="text-center">Il n'y a pas de produit.</h1>
+        {% endif %}    
+    {% else %} 
+        <h1>Echec de la recherche</h1>        
+        <h1>Erreur : {{form.message}}</h1>       
+        <h1><a href="index.php?page=accueil">Retourner sur la page d'accueil</a></h1>    
+    {% endif %}    
+{% endif %}    
+{% endblock %}
+ 
