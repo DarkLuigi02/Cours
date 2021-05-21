@@ -1,25 +1,5 @@
 <?php
 function produitCreaControleur($twig,$db){  
-    $form = array();   $form = array();
-    if (isset($_POST['BtRecherche'])){   
-        $produit = new Produit;
-        $design = $_POST['recherche'];
-        $liste=$produit->recherche($design);
-    }             
-    $limite=5;
-    if(!isset($_GET['nopage'])){
-        $inf=0;
-        $nopage=0;
-    }else{
-        $nopage=$_GET['nopage'];
-        $inf=$nopage * $limite;
-    }
-    $r = $produit->selectCount();
-    $nb = $r['nb'];
-    $liste = $produit->selectLimit($inf,$limite);
-    $form['nbpages'] = ceil($nb/$limite);
-    $form['nopage'] = $nopage;
-    echo $twig->render('recherche.html.twig', array('form'=>$form,'liste'=>$liste));
     if (isset($_POST['newproduit'])){    
         $photo =null;      
         $produit = new Produit($db);      
@@ -73,12 +53,16 @@ function boutiqueControleur($twig, $db){
         if(isset($_GET['etat'])){       
             $form['etat'] = $_GET['etat'];     
         }
-        $liste = $produit->select();
     echo $twig->render('boutique.html.twig', array('form'=>$form,'liste'=>$liste));
 }
 function produitControleur($twig, $db){    
     $form = array();  
     $produit = new Produit($db);   
+
+    if(isset($_POST['btCreation'])){  
+        header('Location: index.php?page=creaproduit');      
+        exit;    
+    }
 
     if(isset($_POST['btSupprimer'])){      
         $cocher = $_POST['cocher'];      

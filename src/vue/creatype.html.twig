@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Creation de type {% endblock %}
+{% block contenu %} 
+
+{% if form.valide is defined %}     
+    {% if form.valide == true %}       
+    <h1>Inscription réussie</h1>      
+    <h1>Voici le nom du produit : {{form.designation}}</h1>            
+    {% else %} 
+    <h1>Echec de l'inscription</h1>        
+    <h1>Erreur : {{form.message}}</h1>       
+    <h1><a href="index.php?page=creatype">Retourner sur la page d'inscription</a></h1>    
+    {% endif %}     
+    {% else %}   
+    <form class="form-signin" action="index.php?page=creatype" method="post" enctype="multipart/form-data">      
+    <h1>Creation d'un nouveau produit</h1>
+    <label for="inputProduit" class="sr-only">Nom du type: </label>      
+    <input type="texte" id="designation" name="inputProduit" class="form-control" placeholder="designation" required autofocus>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="newproduit">Creation</button> 
+    </form>
+    
+    {% endif %} 
+{% endblock %} 

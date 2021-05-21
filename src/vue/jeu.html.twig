@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Liste des Jeu du coaching {% endblock %}
+{% block contenu %} 
+
+{% if form.etat is defined %}     
+    {% if form.etat == true %}       
+        <h1 class="h3 mb-3 font-weight-normal">Suppression réussie</h1>       
+    {% else %}         
+    <h1 class="alert alert-danger" role="alert">Problème d'insertion</h1>     
+    {% endif %}         
+{% endif %}  
+{% if liste | length >0 %}
+
+<form  class="form-signin" action="index.php?page=jeu" method="post" enctype="application/x-www-form-urlencoded"> 
+<div class="table-responsive">  
+    <table class="table">
+    <thead>     
+        <tr>       
+         <th scope="col">Nom</th>           
+         <th scope="col">Prix</th>      
+         <th scope="col">Photo</th>
+         <th scope="col"></th>  
+         <th scope="col"></th>  
+         <th scope="col"></th>   
+        </tr>    
+    </thead>    
+    <tbody> 
+        {% for j in liste %}
+        <tr>
+            <td>{{j.Nom}}</td>
+            <td>{{j.Prixparh}}</td>
+            <td><img class style="width: 7%" src = "images/{{j.photo}}" ></src></td>
+            <td><a href="index.php?page=jeuModif&id={{j.id}}">Modifier</a></td>
+            <td><a href="index.php?page=jeu&id={{j.id}}">Supprimer</a></td>
+            <td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{u.id}}" /></td>
+        </tr>
+        {% endfor %}        
+    </tbody> 
+    </table>
+</div>  
+<button class="btn btn-lg btn-primary btn-block" type="submit" name="btSupprimer">Supprimer</button></form>
+<h1></h1>
+<button class="btn btn-lg btn-primary btn-block" type="submit" name="btCreation">Rajouter un jeu a coacher</button></form>
+{% endif %}
+    
+{% endblock %}

@@ -1,14 +1,50 @@
 {% extends "base.html.twig" %}
-{% block title %} {{ parent() }} Accueil {% endblock %}
+{% block title %} {{ parent() }} Coaching {% endblock %}
 {% block contenu %} 
 <h1>Vous etes intérreser par notre coaching sur un jeu de combat</h1>
+{%if session.login is defined %}   
+    <form  class="form-signin" action="index.php?page=coaching" method="post" enctype="application/x-www-form-urlencoded"> 
+        <div class="table-responsive">  
+            <table class="table">
+            <thead>     
+                <tr>    
+                 <th scope="col">Photo</th>   
+                 <th scope="col">Nom</th>      
+                 <th scope="col">Prix/h</th>  
+                 <th scope="col">nombre d'heure voulue</th>     
+                 <th scope="col"></th>     
+                </tr>    
+            </thead>    
+            <tbody> 
+                {% for j in liste %}
+                <tr>
+                    <td><img class style="width: 7%" src = "images/{{j.photo}}" ></src></td>
+                    <td>{{j.Nom}}</td>
+                    <td>{{j.Prixparh}}</td>
+                    <td><select name="champ">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select></td>
+                    <td><a href="index.php?page=rendez-vous&id={{j.id}}">Prendre rendez vous</a></td>
+                </tr>
+                {% endfor %}        
+            </tbody> 
+            </table>
+        </div>
+{% else %} 
+    {% if form.valide == true %}         
+    <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} Non Connecter</h1>         
+    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=connexion">Aller vous Connecter</a></h1>     
+    {% else %}          
+    <h1 class="alert alert-danger" role="alert">{{ form.message }}  Non Connecter</h1>       
+    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=accueil">Aller vous Connecter</a></h1>    
+    {% endif %}
+{% endif %}
 <!-- si l'utilisateur est connecté alors il pourrat choisir son jeu -->
 <!-- puis le nombre d'heure et cela affichera le prix -->
 <!-- cela mettra dans la base de donnée coaching-->
-<h1>Desolè pour l'instant ce n'est pas disponible</h1>
-<!--
-
-
--->
     
 {% endblock %} 

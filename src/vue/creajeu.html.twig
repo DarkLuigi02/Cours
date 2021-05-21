@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Creation de jeu a coacher {% endblock %}
+{% block contenu %} 
+
+{% if form.valide is defined %}     
+    {% if form.valide == true %}       
+    <h1>Inscription réussie</h1>      
+    <h1>Voici le nom du jeu : {{form.designation}}</h1>            
+    {% else %} 
+    <h1>Echec de l'inscription</h1>        
+    <h1>Erreur : {{form.message}}</h1>       
+    <h1><a href="index.php?page=creajeu">Retourner sur la page d'inscription</a></h1>    
+    {% endif %}     
+    {% else %}   
+    <form class="form-signin" action="index.php?page=creajeu" method="post" enctype="multipart/form-data">      
+    <h1>Creation d'un nouveau jeu a coacher</h1>
+    <label for="nom" class="sr-only">Nom du jeu: </label>      
+    <input type="texte" id="Nom" name="nom" class="form-control" placeholder="Nom du Jeu" required autofocus>   
+    <label for="prix" class="sr-only">Prix l'heure:</label>      
+    <input type="nombre" id="prix" name="prix" class="form-control" placeholder="Le prix par heure" required autofocus>
+    <label for="photo" class="form-control">Photo :</label>
+    <input type="file" name="photo" id="photo" class="form-control"/>   
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="newjeu">Creation</button> 
+    </form>
+    {% endif %} 
+{% endblock %} 

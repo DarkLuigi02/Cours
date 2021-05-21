@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% block title %}{{ parent() }} Modifier un Jeu du coaching {% endblock %}
+{% block contenu %} 
+<h1>Modifier un Jeu</h1>
+{% if form.jeu is defined %}     
+    {% if form.jeu != null %}      
+        <form class="form-signin" action="index.php?page=jeuModif" method="post" enctype="application/x-www-form-urlencoded">      
+        <h1 class="h3 mb-3 font-weight-normal">Modifier un Jeu</h1>         
+        <label for="nom" class="sr-only">Nom:</label>      
+        <input type="text" id="Nom" name="Nom" class="form-control" placeholder="Nom du Jeu" value="{{form.jeu.nom}}">    
+        <label for="prix" class="sr-only">Prix par h:</label>      
+        <input type="text" id="Prix/h" name="prix" class="form-control" placeholder="prix par heure" value="{{form.jeu.prix}}">  
+        <label for="photo" class="sr-only">Image:</label>   
+        {% if form.jeu.photo is not empty %}
+            <img src="images/{{form.jeu.photo}}" alt= "image du produit " />
+        {% else %}
+            <img src="images/carton.jpg" class style="width: 10%" alt= "image du produit" />
+        {% endif %}   
+        <input type="file" id="photo" name="photo" class="form-control" placeholder="Image" value="{{form.jeu.photo}}">  
+        <input type="hidden" name="id" value="{{ form.jeu.id}}"/>     
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button>      
+        </form> 
+    {% else %}        
+    <h2 class="alert alert-danger" role="alert">{{ form.message }}</h2>        
+    <a href="index.php?page=jeu">Retourner sur la liste des Jeu</a>    
+    {% endif %}
+{% else %}      
+    {% if form.valide == true %}         
+    <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>         
+    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=jeu">Retourner sur la liste des Jeu</a></h1>     
+    {% else %}          
+    <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>       
+    <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=jeu">Retourner sur la liste des Jeu</a></h1>    
+    {% endif %}
+{% endif %}     
+{% endblock %} 

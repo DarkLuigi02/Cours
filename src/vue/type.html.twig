@@ -1,22 +1,41 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Liste des produits {% endblock %}
+{% block contenu %} 
+
+{% if form.etat is defined %}     
+    {% if form.etat == true %}       
+        <h1 class="h3 mb-3 font-weight-normal">Suppression réussie</h1>       
+    {% else %}         
+    <h1 class="alert alert-danger" role="alert">Problème d'insertion</h1>     
+    {% endif %}         
+{% endif %}  
+{% if liste | length >0 %}
+
+<form  class="form-signin" action="index.php?page=type" method="post" enctype="application/x-www-form-urlencoded"> 
 <div class="table-responsive">  
     <table class="table">
     <thead>     
         <tr>        
-         <th scope="col">Jeux Vidéo</th>      
-         <th scope="col">Tour Ordinateur</th> 
-         <th scope="col">Console</th>      
-         <th scope="col">Processeurs</th>
-         <th scope="col">Ecran</th>
-         <th scope="col">Carte mère</th>
-         <th scope="col">Autre</th> 
+         <th scope="col">Nom</th>
+         <th scope="col"></th>   
+         <th scope="col"></th>   
+         <th scope="col"></th>         
         </tr>    
     </thead>    
     <tbody> 
-        {% for p in liste %}
-        <tr><td>{{p.Jeux Vidéo}}</td><td>{{p.Tour Ordinateur}}</td><td>{{p.Console}}</td>
-            <td>{{p.Processeurs}}</td><td>{{p.Ecran}}</td><td>{{p.Processeurs}}</td><td>{{p.Carte mère}}</td><td>{{p.Autre}}</td>
+        {% for t in liste %}
+        <tr>
+            <td>{{t.libelle}}</td>
+            <td><a href="index.php?page=produitModif&id={{p.id}}">Modifier</a></td>
+            <td><a href="index.php?page=produit&id={{p.id}}">Supprimer</a></td>
+            <td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{u.id}}" /></td>
         </tr>
         {% endfor %}        
     </tbody>   
     </table> 
 </div>
+<button class="btn btn-lg btn-primary btn-block" type="submit" name="btSupprimer">Supprimer</button></form>
+<h1></h1>
+<button class="btn btn-lg btn-primary btn-block" type="submit" name="btCreation">Rajouter un Type</button></form>
+{% endif %}
+{% endblock %}

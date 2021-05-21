@@ -7,4 +7,5 @@ require_once 'class_type.php';
 require_once 'class_upload.php';
 require_once 'class_produit.php';
 require_once 'class_coaching.php';
+require_once 'class_jeux.php';
 ?>

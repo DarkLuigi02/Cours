@@ -14,8 +14,14 @@ function getPage($db){
     $lesPages['creaproduit'] = "produitCreaControleur;1";
     $lesPages['produit'] = "produitControleur;1";
     $lesPages['produitModif'] = "produitModifControleur;1";
+    $lesPages['type'] = "typeControleur;1";
+    $lesPages['creatype'] = "CreatypeControleur;1";
     $lesPages['typemodif'] = "typeModifControleur;1";
-    $lesPages['coaching'] = "coachingControleur;2";
+    $lesPages['coaching'] = "coachingControleur;0";
+    $lesPages['rendez-vous'] = "rendezvousControleur;2";
+    $lesPages['jeu'] = "jeuControleur;1";
+    $lesPages['creajeu'] = "CreajeuControleur;1";
+    $lesPages['jeuModif'] = "produitModifControleur;1";
     $lesPages['commentaire'] = "commentaireControleur;0";
     $lesPages['commentaireModif'] = "commentaireModifControleur;1";
     $lesPages['recherche'] = "rechercheControleur;0";

@@ -31,7 +31,7 @@
             <td>{{p.designation}}</td>
             <td>{{p.description}}</td>
             <td>{{p.prix}}</td>
-            <td>{{images/p.photo}}</td>
+            <td><img class style="width: 10%" src = "images/{{p.photo}}" ></src></td>
             <td><a href="index.php?page=produitModif&id={{p.id}}">Modifier</a></td>
             <td><a href="index.php?page=produit&id={{p.id}}">Supprimer</a></td>
             <td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{u.id}}" /></td>
@@ -39,8 +39,10 @@
         {% endfor %}        
     </tbody> 
     </table>
-</div>  
+</div> 
 <button class="btn btn-lg btn-primary btn-block" type="submit" name="btSupprimer">Supprimer</button></form>
+<h1></h1>
+<button class="btn btn-lg btn-primary btn-block" type="submit" name="btCreation">Rajouter un Produit</button></form>
 
 {% set nb = form.nbpages %}
 <nav aria-label="Page navigation">

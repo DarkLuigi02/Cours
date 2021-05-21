@@ -6,7 +6,7 @@
     {% if form.valide == true %} 
         {% if utilisateur.valide == true %}      
         <h1>Connection réussie</h1>      
-        <h1>Voici votre identifiant : {{form.email}}</h1>   
+        <h1><a href="index.php?page=accueil">Retourner sur la page de Accueil</a></h1>  
         {% else %}
         <h1>Vous avez reçu un Email</h1>
         {% endif %}  

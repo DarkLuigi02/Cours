@@ -1,8 +1,29 @@
 <?php
+
+function CreatypeControleur($twig,$db){        
+        $produit = new Type($db);      
+        $designation = $_POST['nom'];           
+        $exec=$produit->insert($designation);      
+        if (!$exec){        
+            $form['valide'] = false;          
+            $form['message'] = 'Problème d\'insertion dans la table produit ';       
+        }else{        
+            $form['valide'] = true;  
+            $form['designation']=$designation;      
+        }  
+ 
+    echo $twig->render('creatype.html.twig', array('form'=>$form));
+}
+
 function typeControleur($twig, $db){    
     $form = array();  
     $type = new type($db);    
 
+    if(isset($_POST['btCreation'])){  
+        header('Location: index.php?page=creaproduit');      
+        exit;    
+    } 
+    
     if(isset($_POST['btSupprimer'])){      
         $cocher = $_POST['cocher'];      
         $form['valide'] = true;      
